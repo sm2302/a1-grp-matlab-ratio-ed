@@ -15,7 +15,7 @@ for i = 1:50
            tri = G(row-1, col-1)+G(row-1, col+1)+G(row+1, col-1)+G(row+1, col+1);
            % nearest neighbors
            dir = G(row-1, col)+G(row, col-1)+G(row, col+1)+G(row+1, col);
-           % number of alive neighbor/s
+           % number of alive neighbors
            n = tri + dir;
            % if a live cell has less than 2 or more than 3 neighbors
            % cell should be dead due to under/over-population
@@ -31,7 +31,7 @@ for i = 1:50
            end
 
        end
-       %pause(0.001);
+       %pause(0.01);
        %spy(G)
 
     end
