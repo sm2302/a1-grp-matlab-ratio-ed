@@ -1,11 +1,11 @@
-%% Conway Bame of Lafe
-% to start make the saze of the game (100,100)
+%% Conway Game of Life
+% To start make the size of the game (50,50)
+% Compute the number of neighbours
+% Then draw the dot using spy function
 
-% compute the number of neabhours
-
-% then drwa the dot usang spy functaon
-
-N = 100; 
+clc;
+clear;
+N = 50; 
 A = round(rand(N,N));
 newlife = A;
 for a = 1:N
@@ -22,18 +22,18 @@ for a = 1:N
       vecj(vecj==N+1)=1;
       n = sum(sum(A(veci,vecj)))-A(a,b); % number of neighbour
       if A(a,b)
-          %Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+          % Any live cell with fewer than two live neighbours dies by under-population.
           if (A(a, b)== 1) && ((n < 2) || (n > 3))
               newlife(a,b) = 0;
           
-          %Any live cell with two or three live neighbours lives on to the next generation.
+          % Any live cell with two or three live neighbours lives on to the next generation.
 
-          %Any live cell with more than three live neighbours dies, as if by overcrowding.
+          % Any live cell with more than three live neighbours dies by overcrowding.
           elseif (A(a, b)== 1) && ((n == 2) || (n == 3))
               newlife(a,b) = 1;
       
-          %Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
-          elseif (mylif(a, b)== 0) && (n == 3)
+          % Any dead cell with exactly three live neighbours becomes a live cell by reproduction.
+          elseif (mylife(a, b)== 0) && (n == 3)
               newlife(a,b) = 1;
           end
       end
