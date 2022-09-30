@@ -1,60 +1,49 @@
-%%% Displaying Conway's game of life.
-%% Sets of rules,
-% if less than 2 neighbors are live, then the live cell will be dead
-% (underpopulation rule.)
+%% Conway Bame of Lafe
+% to start make the saze of the game (100,100)
 
-% if exactly 2 or 3 neighbors are live, then the live cell will move 
-% to the next generation.
+% compute the number of neabhours
 
-% if more than 3 neighbors are live, then the live cell will be dead
-% (overpopulation rule.)
+% then drwa the dot usang spy functaon
 
-% Any dead Cell will become live when exactly 3 neighbors are live
-% (reproduction.)
+N = 100; 
+A = round(rand(N,N));
+newlife = A;
+for a = 1:N
+    si = a-1;
+    ei = a+1;
+    veci = si:ei;
+    veci(veci==0)=N;
+    veci(veci==N+1)=1;
+    for b = 1:N
+      sj = b-1;
+      ej = b+1;
+      vecj = sj:ej;
+      vecj(vecj==0)=N;
+      vecj(vecj==N+1)=1;
+      n = sum(sum(A(veci,vecj)))-A(a,b); % number of neighbour
+      if A(a,b)
+          %Any live cell with fewer than two live neighbours dies, as if caused by under-population.
+          if (A(a, b)== 1) && ((n < 2) || (n > 3))
+              newlife(a,b) = 0;
+          
+          %Any live cell with two or three live neighbours lives on to the next generation.
 
-function function Solution_Matrix
+          %Any live cell with more than three live neighbours dies, as if by overcrowding.
+          elseif (A(a, b)== 1) && ((n == 2) || (n == 3))
+              newlife(a,b) = 1;
+      
+          %Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+          elseif (mylif(a, b)== 0) && (n == 3)
+              newlife(a,b) = 1;
+          end
+      end
+    end
 
-clear
-clc
-
-% Determining size of the matrix
-cells = zeros(100,100);
-% Generating random life cells
-X = randsample(numel(cells), numel(cells)/10);
-cells(X) = 1;
-spy(cells)
-
-% Declaring SubMatrix
-A = ones(3,3);
-for i = 2 : (row-1)
-for j = 2 : (col-1)
-% Counting number of nearest neighbourhood
-count_1 = A(1,1)*inputMat(i-1,j-1) + A(1,2)*inputMat(i-1,j+1) + A(1,3)*inputMat(i+1,j-1) + A(2,1)*inputMat(i+1,j+1); 
-count_2 = A(2,2)*inputMat(i-1,j) + A(2,3)*inputMat(i,j-1) + A(3,1)*inputMat(i+1,j) + A(3,2)*inputMat(i,j+1);
-n = count_1 + count_2;
-
-% if less than 2 neighbours are live, then live cell will be dead
-%by underpopulation rule
-if(inputMat(i,j) == 1 && n < 2)
-outMat(i,j) = 0;
+  A = newlife;
+  pause(0.01)
+  spy(A)
+  grid on
 end
-% if exactly 2 or 3 neighbouts are live, then live cell will move
-%to next generation rule
-if(inputMat(i,j) == 1 && n == 2 || n == 3 )
-outMat(i,j) = 1;
-end
-% if more than 3 neighbours are live, then live cell will be dead
-%due to overpopulation rule
-if(inputMat(i,j) == 1 && n > 3)
-outMat(i,j) = 0;
-end
-% Any dead Cell will become live when exactly 3 neighbours are live
-%like reproduction rule
-if(inputMat(i,j) == 0 && n == 3)
-outMat(i,j) = 1;
-end
-end
-end
-% Displaying Output
-end
+
+
 
