@@ -1,5 +1,5 @@
-%%% Displaying Coway's game of life.
-%% Set of rues,
+%%% Displaying Conway's game of life.
+%% Sets of rules,
 % if less than 2 neighbors are live, then the live cell will be dead
 % (underpopulation rule.)
 
@@ -12,11 +12,18 @@
 % Any dead Cell will become live when exactly 3 neighbors are live
 % (reproduction.)
 
-function outMat = Solution_Matrix(inputMat)
-% Copy of the inputMat
-outMat = inputMat;
+function function Solution_Matrix
+
+clear
+clc
+
 % Determining size of the matrix
-[row, col] = size(inputMat);
+cells = zeros(100,100);
+% Generating random life cells
+X = randsample(numel(cells), numel(cells)/10);
+cells(X) = 1;
+spy(cells)
+
 % Declaring SubMatrix
 A = ones(3,3);
 for i = 2 : (row-1)
