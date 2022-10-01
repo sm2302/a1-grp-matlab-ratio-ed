@@ -6,8 +6,8 @@ A = round(rand(10));
 [m_len, n_len] = size(A);
 mylife = A;
 disp(mylife)
-% Declaring Brix
-B = ones(3,3); % subMatix
+% subMatix
+B = ones(3,3); 
 
 for i = 2 : (m_len-1)
     for j = 2 : (n_len-1)
@@ -41,4 +41,3 @@ pause(0.01)
 pcolor(mylife)
 grid on
 end
-%% Function Body end
